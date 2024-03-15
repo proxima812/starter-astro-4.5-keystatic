@@ -1,0 +1,38 @@
+---
+import MainLayout from "@/layouts/MainLayout.astro"
+import { getCollection } from "astro:content"
+
+export async function getStaticPaths() {
+	const posts = await getCollection("posts")
+	const tags = new Set()
+	posts.forEach(post => {
+		if (post.data.tags) {
+			// Проверка на наличие тегов
+			post.data.tags.forEach(tag => {
+				tags.add(tag.toLowerCase())
+			})
+		}
+	})
+
+	return Array.from(tags).map(tag => ({
+		params: { tag },
+		props: { tag },
+	}))
+}
+
+const { tag } = Astro.props
+
+const posts = await getCollection("posts")
+const filteredPosts = posts.filter(post => {
+	return (
+		post.data.tags &&
+		post.data.tags.some(postTag => postTag.toLowerCase() === tag.toLowerCase())
+	)
+})
+---
+
+<MainLayout {...tag.data}>
+	<main class="prose mx-auto">
+		{filteredPosts.map(tag => <a href={`/posts/${tag.slug}`}>{tag.data.title}</a>)}
+	</main>
+</MainLayout>

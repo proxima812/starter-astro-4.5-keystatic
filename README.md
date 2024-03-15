@@ -9,6 +9,7 @@ _стартер буду дорабатывать по мере понимая, 
 - keystatic (core & astro)
 - react (astro)
 - astro-compress
+- astro-meta-tags
 - sitemap
 - markdoc
 - mdx

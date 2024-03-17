@@ -1,0 +1,25 @@
+---
+import { formatDate } from "@/utils/libs/formatDate"
+
+const { data, class: className, props } = Astro.props
+---
+
+<div class:list={`${className ? className : ""}flex gap-3`} {...props}>
+	<span>
+		<time datetime={data.datePublished} aria-label="Время публикации">
+			<b>Добавлено: </b>{formatDate(data.datePublished)}
+		</time>
+	</span>
+	{
+		data.dateModified && (
+			<span>
+				<>
+					<b>Изменено: </b>
+					<time aria-label="Время изменения" datetime={data.dateModified}>
+						{formatDate(data.dateModified)}
+					</time>
+				</>
+			</span>
+		)
+	}
+</div>

@@ -1,0 +1,26 @@
+---
+import { Image } from "astro:assets"
+import Date from "./Date.astro"
+
+const { data, slug } = Astro.props
+---
+
+<a href={`/posts/${slug}`}>
+	<article class="max-w-xl flex flex-col gap-3">
+		{
+			data.ogImage && (
+				<Image
+					src={data.ogImage}
+					alt={data.title}
+					width={data.ogImage.width / 2}
+					quality={"mid"}
+					format="avif"
+					densities={[1.5, 2]}
+				/>
+			)
+		}
+		<h2>{data.title}</h2>
+		<p>{data.description}</p>
+		<Date data={data} />
+	</article>
+</a>

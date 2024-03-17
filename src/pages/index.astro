@@ -1,6 +1,6 @@
 ---
+import Post from '@/components/Post.astro'
 import MainLayout from "@/layouts/MainLayout.astro"
-import { Image, Picture } from "astro:assets"
 
 import { getCollection } from "astro:content"
 
@@ -9,35 +9,6 @@ const posts = (await getCollection("posts"))
 	.sort((a, b) => +new Date(b.data.datePublished) - +new Date(a.data.datePublished))
 ---
 
-<MainLayout title='' description=''>
-	{
-		posts &&
-			posts.map(item => (
-				<a href={`/posts/${item.slug}`}>
-					<article class="max-w-xl flex flex-col gap-3">
-						{item.data.ogImage && (
-							<Picture
-								src={item.data.ogImage}
-								alt={item.data.title}
-								formats={["avif", "webp"]}
-								quality={"mid"}
-							/>
-						)}
-						{item.data.ogImage && (
-							<Image
-								src={item.data.ogImage}
-								alt={item.data.title}
-								width={item.data.ogImage.width / 2}
-								quality={"mid"}
-								format="avif"
-								densities={[1.5, 2]}
-							/>
-						)}
-						<h2>{item.data.title}</h2>
-						<p>{item.data.description}</p>
-						<span>{item.data.datePublished}</span>
-					</article>
-				</a>
-			))
-	}
+<MainLayout title="" description="">
+	{posts && posts.map(post => <Post data={post.data} slug={post.slug} />)}
 </MainLayout>

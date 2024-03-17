@@ -108,7 +108,9 @@ const posts = defineCollection({
 │   │               ├── 7c7f04be4e564d2270cb2e1d591e92c7.jpg
 │   │               └── ogImage.png
 │   ├── components
+│   │   ├── Date.astro
 │   │   ├── Favicons.astro
+│   │   ├── Post.astro
 │   │   ├── SEOHead.astro
 │   │   └── partials
 │   │       ├── Footer.astro
@@ -135,6 +137,8 @@ const posts = defineCollection({
 │   ├── styles
 │   │   └── tailwind.css
 │   └── utils
+│       ├── libs
+│       │   └── formatDate.ts
 │       └── manifest.ts
 ├── tailwind.config.mjs
 └── tsconfig.json

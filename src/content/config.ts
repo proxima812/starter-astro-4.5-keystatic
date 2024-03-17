@@ -9,6 +9,7 @@ const posts = defineCollection({
 			// "2024-02-21T15:30:00Z"
 			// https://armno.in.th/blog/exploring-keystatic/#published-date-field
 			datePublished: z.union([z.string().datetime(), z.date()]),
+			dateModified: z.union([z.string().datetime(), z.date()]).optional(),
 			tags: z.array(z.string()).default(["прочее"]),
 			draft: z.boolean().default(false),
 		}),
